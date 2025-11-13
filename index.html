@@ -6,44 +6,69 @@
   <title>CueCube Wholesale Access</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="page-login">
-  <section class="hero hero-billiard">
-    <div class="topline">Official Billiard Accessory Supplier</div>
-    <div class="logo">CUECUBE <span>WHOLESALE</span></div>
-    <h1>Dealer access for billiard stores</h1>
-    <p class="subtitle">
-      View wholesale pricing, Florida distribution info and keychain models. Authorized dealers only.
-    </p>
-    <div class="badge-row">
-      <span class="badge">Min 10 pcs</span>
-      <span class="badge">50+ → 15% off</span>
-      <span class="badge">100+ → extra 15%</span>
+
+<body class="login-page">
+
+  <header class="topbar-login">
+    <div>
+      <div class="topbar-small">OFFICIAL BILLIARD ACCESSORY SUPPLIER</div>
+      <div class="logo-line">CUECUBE <span class="tag">WHOLESALE</span></div>
     </div>
-    <div class="product-strip">
-      <img src="img/cue-cube-grey-353-1.jpg" alt="CueCube Dime" />
-      <img src="img/cue-cube-grey-418-1.jpg" alt="CueCube Nickel" />
-      <img src="img/cue-cube-keychain-353-1.jpg" alt="CueCube Keychain" />
-    </div>
-    <div class="note">Based in Florida • Ships via UPS / USPS • Billiard retailers & pro shops</div>
-  </section>
+  </header>
 
-  <section class="auth-box">
-    <h2>Dealer Login</h2>
-    <p class="auth-text">Enter your credentials to open the wholesale catalog.</p>
-    <form id="loginForm">
-      <label for="login">Login / Email</label>
-      <input type="text" id="login" value="demo@cuecube.com" />
+  <main class="login-layout">
 
-      <label for="password">Password</label>
-      <input type="password" id="password" value="password" />
+    <section class="login-left">
+      <h1>Dealer access for billiard stores</h1>
+      <p>
+        View wholesale pricing, Florida distribution info and keychain models.
+        Authorized dealers only.
+      </p>
 
-      <button type="submit">Sign in</button>
-    </form>
-    <div class="small">
-      Need access? Contact sales to be added as an official dealer.
-    </div>
-  </section>
+      <div class="terms-row">
+        <span class="pill">Min 10 pcs</span>
+        <span class="pill">50+ → 15% off</span>
+        <span class="pill">100+ → extra 15%</span>
+      </div>
 
-  <script src="script.js"></script>
+      <div class="preview-gallery">
+        <img src="img/cue-cube-grey-353-1.jpg" alt="">
+        <img src="img/cue-cube-grey-418-1.jpg" alt="">
+        <img src="img/cue-cube-keychain-418-1.jpg" alt="">
+      </div>
+
+      <p class="footer-note">
+        Based in Florida • Ships via UPS / USPS • Billiard retailers & pro shops
+      </p>
+    </section>
+
+    <section class="login-box">
+      <h2>Dealer Login</h2>
+      <p>Enter your credentials to open the wholesale catalog.</p>
+
+      <form onsubmit="return openCatalog(event)">
+        <label>Login / Email</label>
+        <input type="email" id="login" value="demo@cuecube.com" required />
+
+        <label>Password</label>
+        <input type="password" id="password" value="password" required />
+
+        <button type="submit" class="btn-gold">Sign in</button>
+      </form>
+
+      <p class="small-note">
+        Need access? Contact sales to be added as an official dealer.
+      </p>
+    </section>
+
+  </main>
+
+<script>
+function openCatalog(event) {
+  event.preventDefault();
+  window.location.href = "products.html";
+}
+</script>
+
 </body>
 </html>
