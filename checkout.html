@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CueCube – Checkout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="products-body">
+
+  <header class="topbar billiard-topbar">
+    <div class="topbar-left">
+      <div class="logo">
+        CUECUBE <span>WHOLESALE</span>
+      </div>
+      <div class="topbar-info">
+        Billiard accessories • Florida • Dealers only
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="user-pill">Signed in as: dealer</div>
+      <a href="products.html" class="logout">Back to catalog</a>
+    </div>
+  </header>
+
+  <div class="products-page products-page--with-cart">
+
+    <!-- LEFT: CHECKOUT FORM -->
+    <main class="products-content">
+      <h1>Checkout</h1>
+      <p class="muted">
+        Provide your store details and shipping address. We’ll confirm pricing and shipping before finalizing the order.
+      </p>
+
+      <form id="checkoutForm" class="checkout-form">
+        <h2>Store details</h2>
+
+        <label>
+          Store / Business name
+          <input type="text" name="storeName" required />
+        </label>
+
+        <label>
+          Contact name
+          <input type="text" name="contactName" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" required />
+        </label>
+
+        <h2>Shipping address</h2>
+
+        <label>
+          Address line 1
+          <input type="text" name="address1" required />
+        </label>
+
+        <label>
+          Address line 2 (optional)
+          <input type="text" name="address2" />
+        </label>
+
+        <div class="checkout-row-3">
+          <label>
+            City
+            <input type="text" name="city" required />
+          </label>
+
+          <label>
+            State / Province
+            <input type="text" name="state" required />
+          </label>
+
+          <label>
+            ZIP / Postal code
+            <input type="text" name="zip" required />
+          </label>
+        </div>
+
+        <label>
+          Country
+          <input type="text" name="country" value="USA" required />
+        </label>
+
+        <h2>Notes</h2>
+        <label>
+          Special instructions (optional)
+          <textarea name="notes" rows="4"></textarea>
+        </label>
+
+        <button type="submit" class="cart-checkout">
+          Place wholesale order request
+        </button>
+
+        <p id="checkoutMessage" class="muted" style="margin-top: 10px;"></p>
+      </form>
+    </main>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <aside class="cart-panel">
+      <h2>Order summary</h2>
+      <p class="cart-note">
+        Review quantities and totals before sending your order.
+      </p>
+
+      <div id="checkoutSummary" class="cart-items"></div>
+
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="checkoutTotal">$0.00</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

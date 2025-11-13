@@ -26,7 +26,7 @@
     </div>
   </header>
 
-  <!-- MAIN LAYOUT: SIDEBAR + CONTENT + CART -->
+  <!-- MAIN LAYOUT -->
   <div class="products-page products-page--with-cart">
 
     <!-- SIDEBAR -->
@@ -170,8 +170,9 @@
         <span id="cartTotal">$0.00</span>
       </div>
 
-      <button class="cart-checkout">
-        Proceed to checkout (demo)
+      <!-- УБРАЛ (demo) + добавил переход на checkout -->
+      <button class="cart-checkout" onclick="goToCheckout()">
+        Proceed to checkout
       </button>
     </aside>
 

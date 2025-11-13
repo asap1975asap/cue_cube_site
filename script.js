@@ -1,201 +1,211 @@
-﻿// ===== products data aligned with your filenames =====
+﻿// ---- Product catalog ----
 const PRODUCTS = {
   dime353: {
     id: "dime353",
     name: 'Tip Shaper – Dime (.353")',
     sku: "CC-DIME-353",
-    price: 15,
-    min: 10,
-    images: [
-      "img/cue-cube-grey-353-1.jpg",
-      "img/cue-cube-grey-353-2.jpg",
-      "img/cue-cube-grey-353-3.jpg",
-    ],
-    desc: "Standard finish, scuff & shape, made in U.S.A.",
+    price: 15.0,
+    minQty: 10,
   },
   nickel418: {
     id: "nickel418",
     name: 'Tip Shaper – Nickel (.418")',
     sku: "CC-NICKEL-418",
-    price: 15,
-    min: 10,
-    images: [
-      "img/cue-cube-grey-418-1.jpg",
-      "img/cue-cube-grey-418-2.jpg",
-      "img/cue-cube-grey-418-3.jpg",
-    ],
-    desc: "Nickel radius for most popular cue tips.",
+    price: 15.0,
+    minQty: 10,
   },
   keychain: {
     id: "keychain",
     name: "CueCube Keychain – Nickel",
     sku: "CC-KEY-NICKEL",
-    price: 15,
-    min: 20,
-    images: [
-      "img/cue-cube-keychain-353-1.jpg",
-      "img/cue-cube-keychain-353-2.jpg",
-      "img/cue-cube-keychain-353-3.jpg",
-    ],
-    desc: "Keyring version, great counter item for billiard stores.",
+    price: 15.0,
+    minQty: 20,
   },
 };
 
-// ===== login =====
-const form = document.getElementById("loginForm");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    window.location.href = "products.html";
-  });
-}
+let cart = {};
 
-// ===== cart =====
-let CART = JSON.parse(localStorage.getItem("cuecube_cart") || "[]");
+// ---- Cart storage helpers ----
+function loadCart() {
+  try {
+    const raw = localStorage.getItem("cuecube_cart");
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (e) {
+    console.error("Failed to load cart", e);
+    return {};
+  }
+}
 
 function saveCart() {
-  localStorage.setItem("cuecube_cart", JSON.stringify(CART));
+  try {
+    localStorage.setItem("cuecube_cart", JSON.stringify(cart));
+  } catch (e) {
+    console.error("Failed to save cart", e);
+  }
 }
 
-function renderCart() {
-  const list = document.getElementById("cartItems");
-  const totalEl = document.getElementById("cartTotal");
-  if (!list) return;
+// ---- Add to cart from products page ----
+function addToCart(productId) {
+  const product = PRODUCTS[productId];
+  if (!product) return;
 
-  list.innerHTML = "";
+  // найти инпут количества
+  const qtyInput = document.getElementById(`qty_${productId}`);
+  let qty = qtyInput ? parseInt(qtyInput.value, 10) : NaN;
+
+  if (isNaN(qty) || qty <= 0) {
+    alert("Please enter a valid quantity.");
+    return;
+  }
+
+  if (qty < product.minQty) {
+    alert(
+      `Minimum order for ${product.name} is ${product.minQty} pcs.`
+    );
+    qty = product.minQty;
+    if (qtyInput) qtyInput.value = String(product.minQty);
+  }
+
+  cart[productId] = qty;
+  saveCart();
+  renderCartPanel();
+}
+
+// ---- Render cart on products page ----
+function renderCartPanel() {
+  const container = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+
+  if (!container || !totalEl) return; // не на этой странице
+
+  container.innerHTML = "";
   let total = 0;
 
-  CART.forEach((item) => {
-    const line = document.createElement("div");
-    line.className = "cart-item";
-    const lineTotal = item.price * item.qty;
+  const ids = Object.keys(cart);
+  if (ids.length === 0) {
+    container.innerHTML = "<p class='muted'>No items in order yet.</p>";
+    totalEl.textContent = "$0.00";
+    return;
+  }
+
+  ids.forEach((id) => {
+    const product = PRODUCTS[id];
+    if (!product) return;
+    const qty = cart[id];
+    const lineTotal = product.price * qty;
     total += lineTotal;
-    line.innerHTML = `
-      <div>
-        <div class="cart-item-title">${item.name}</div>
-        <div class="cart-item-meta">${item.sku} • $${item.price.toFixed(
-          2
-        )} × ${item.qty}</div>
+
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "cart-item";
+
+    const left = document.createElement("div");
+    left.className = "cart-item-left";
+    left.innerHTML = `
+      <div class="cart-item-name">${product.name}</div>
+      <div class="cart-item-sub">
+        ${product.sku} • $${product.price.toFixed(2)} × ${qty}
       </div>
-      <div class="cart-item-total">$${lineTotal.toFixed(2)}</div>
     `;
-    list.appendChild(line);
+
+    const right = document.createElement("div");
+    right.className = "cart-item-right";
+    right.textContent = `$${lineTotal.toFixed(2)}`;
+
+    itemDiv.appendChild(left);
+    itemDiv.appendChild(right);
+    container.appendChild(itemDiv);
   });
 
-  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+  totalEl.textContent = `$${total.toFixed(2)}`;
 }
-renderCart();
 
-const checkoutBtn = document.getElementById("cartCheckout");
-checkoutBtn?.addEventListener("click", () => {
-  if (!CART.length) {
-    alert("Your wholesale order is empty.");
-  } else {
-    alert("Demo checkout — here we would send order to sales.");
-  }
-});
-
-// ===== Add to order on products.html (inline qty under each product) =====
-const orderBtns = document.querySelectorAll(".order-btn");
-
-function addToCart(productId, qty) {
-  const p = PRODUCTS[productId];
-  if (!p) return;
-
-  const existing = CART.find((i) => i.id === productId);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    CART.push({
-      id: p.id,
-      name: p.name,
-      sku: p.sku,
-      price: p.price,
-      qty,
-    });
-  }
+// ---- Go to checkout ----
+function goToCheckout() {
   saveCart();
-  renderCart();
+  window.location.href = "checkout.html";
 }
 
-orderBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const pid = btn.dataset.product;
-    const p = PRODUCTS[pid];
-    if (!p) return;
+// ---- Render summary on checkout page ----
+function renderCheckoutSummary() {
+  const container = document.getElementById("checkoutSummary");
+  const totalEl = document.getElementById("checkoutTotal");
 
-    const input = document.querySelector(
-      `.qty-input[data-product="${pid}"]`
-    );
+  if (!container || !totalEl) return; // не на checkout
 
-    let qty = p.min;
-    if (input) {
-      const v = parseInt(input.value, 10);
-      if (!Number.isNaN(v)) {
-        qty = Math.max(v, p.min);
-      }
-      // выравниваем значение в поле (если ввели меньше минимума)
-      input.value = qty;
+  container.innerHTML = "";
+  let total = 0;
+  const ids = Object.keys(cart);
+
+  if (ids.length === 0) {
+    container.innerHTML =
+      "<p class='muted'>Your order is empty. Go back to the catalog to add items.</p>";
+    totalEl.textContent = "$0.00";
+    return;
+  }
+
+  ids.forEach((id) => {
+    const product = PRODUCTS[id];
+    if (!product) return;
+    const qty = cart[id];
+    const lineTotal = product.price * qty;
+    total += lineTotal;
+
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "cart-item";
+
+    const left = document.createElement("div");
+    left.className = "cart-item-left";
+    left.innerHTML = `
+      <div class="cart-item-name">${product.name}</div>
+      <div class="cart-item-sub">
+        ${product.sku} • $${product.price.toFixed(2)} × ${qty}
+      </div>
+    `;
+
+    const right = document.createElement("div");
+    right.className = "cart-item-right";
+    right.textContent = `$${lineTotal.toFixed(2)}`;
+
+    itemDiv.appendChild(left);
+    itemDiv.appendChild(right);
+    container.appendChild(itemDiv);
+  });
+
+  totalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+// ---- Checkout form handler ----
+function initCheckoutForm() {
+  const form = document.getElementById("checkoutForm");
+  const msg = document.getElementById("checkoutMessage");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // здесь ты позже сможешь отправить данные на сервер / в ShipStation API
+    const formData = new FormData(form);
+    console.log("Checkout data:", Object.fromEntries(formData.entries()));
+    console.log("Cart:", cart);
+
+    if (msg) {
+      msg.textContent =
+        "Thank you! Your wholesale order request has been recorded. A sales representative will contact you to confirm pricing and shipping.";
     }
 
-    addToCart(pid, qty);
+    // опционально можно очистить корзину:
+    // cart = {};
+    // saveCart();
+    // renderCheckoutSummary();
   });
-});
-
-// ===== product.html page (детальная карточка) =====
-const detail = document.getElementById("productDetail");
-if (detail) {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("product");
-  const p = PRODUCTS[id];
-
-  if (!p) {
-    detail.innerHTML = "<p>Product not found</p>";
-  } else {
-    detail.innerHTML = `
-      <div class="product-detail-left">
-        <div class="product-detail-mainimg">
-          <img id="detailMainImg" src="${p.images[0]}" alt="${p.name}" />
-        </div>
-        <div class="product-detail-thumbs" id="detailThumbs">
-          ${p.images
-            .map(
-              (img, i) =>
-                `<img src="${img}" class="detail-thumb ${
-                  i === 0 ? "active" : ""
-                }" data-img="${img}" />`
-            )
-            .join("")}
-        </div>
-      </div>
-      <div class="product-detail-right">
-        <h1>${p.name}</h1>
-        <p class="sku">${p.sku}</p>
-        <p class="desc">${p.desc}</p>
-        <label for="detailQty">Quantity (min ${p.min})</label>
-        <input id="detailQty" type="number" value="${p.min}" min="${p.min}" />
-        <button class="detail-add" data-product="${p.id}">Add to order</button>
-      </div>
-    `;
-
-    const mainImg = document.getElementById("detailMainImg");
-    const thumbs = document.querySelectorAll(".detail-thumb");
-    thumbs.forEach((thumb) => {
-      thumb.addEventListener("click", () => {
-        mainImg.src = thumb.dataset.img;
-        thumbs.forEach((t) => t.classList.remove("active"));
-        thumb.classList.add("active");
-      });
-    });
-
-    const addBtn = document.querySelector(".detail-add");
-    const detailQty = document.getElementById("detailQty");
-    addBtn.addEventListener("click", () => {
-      const q = parseInt(detailQty.value, 10) || p.min;
-      const qty = Math.max(q, p.min);
-      detailQty.value = qty;
-      addToCart(p.id, qty);
-      alert("Added to order.");
-    });
-  }
 }
+
+// ---- Init on page load ----
+document.addEventListener("DOMContentLoaded", () => {
+  cart = loadCart();
+  renderCartPanel();
+  renderCheckoutSummary();
+  initCheckoutForm();
+});
