@@ -9,14 +9,11 @@
 
 <body class="products-body">
 
+  <!-- TOP BAR -->
   <header class="topbar billiard-topbar">
     <div class="topbar-left">
-      <div class="logo">
-        CUECUBE <span>WHOLESALE</span>
-      </div>
-      <div class="topbar-info">
-        Billiard accessories • Florida • Dealers only
-      </div>
+      <div class="logo">CUECUBE <span>WHOLESALE</span></div>
+      <div class="topbar-info">Billiard accessories • Florida • Dealers only</div>
     </div>
 
     <div class="topbar-right">
@@ -25,92 +22,78 @@
     </div>
   </header>
 
-  <div class="products-page products-page--with-cart">
+  <!-- CENTERED CHECKOUT CONTAINER -->
+  <div class="checkout-wrapper">
 
-    <!-- LEFT: CHECKOUT FORM -->
-    <main class="products-content">
+    <!-- LEFT COLUMN: FORM -->
+    <main class="checkout-left">
       <h1>Checkout</h1>
       <p class="muted">
         Provide your store details and shipping address. We’ll confirm pricing and shipping before finalizing the order.
       </p>
 
       <form id="checkoutForm" class="checkout-form">
-        <h2>Store details</h2>
 
-        <label>
-          Store / Business name
+        <h2>Store details</h2>
+        <label>Store / Business name
           <input type="text" name="storeName" required />
         </label>
 
-        <label>
-          Contact name
+        <label>Contact name
           <input type="text" name="contactName" required />
         </label>
 
-        <label>
-          Email
+        <label>Email
           <input type="email" name="email" required />
         </label>
 
-        <label>
-          Phone
+        <label>Phone
           <input type="tel" name="phone" required />
         </label>
 
         <h2>Shipping address</h2>
 
-        <label>
-          Address line 1
+        <label>Address line 1
           <input type="text" name="address1" required />
         </label>
 
-        <label>
-          Address line 2 (optional)
+        <label>Address line 2 (optional)
           <input type="text" name="address2" />
         </label>
 
         <div class="checkout-row-3">
-          <label>
-            City
+          <label>City
             <input type="text" name="city" required />
           </label>
 
-          <label>
-            State / Province
+          <label>State / Province
             <input type="text" name="state" required />
           </label>
 
-          <label>
-            ZIP / Postal code
+          <label>ZIP / Postal code
             <input type="text" name="zip" required />
           </label>
         </div>
 
-        <label>
-          Country
+        <label>Country
           <input type="text" name="country" value="USA" required />
         </label>
 
         <h2>Notes</h2>
-        <label>
-          Special instructions (optional)
+        <label>Special instructions (optional)
           <textarea name="notes" rows="4"></textarea>
         </label>
 
-        <button type="submit" class="cart-checkout">
-          Place wholesale order request
-        </button>
-
+        <button type="submit" class="cart-checkout">Place wholesale order request</button>
         <p id="checkoutMessage" class="muted" style="margin-top: 10px;"></p>
+
       </form>
     </main>
 
-    <!-- RIGHT: ORDER SUMMARY -->
-    <aside class="cart-panel">
+    <!-- RIGHT COLUMN: SUMMARY -->
+    <aside class="checkout-right">
       <h2>Order summary</h2>
-      <p class="cart-note">
-        Review quantities and totals before sending your order.
-      </p>
+      <p class="cart-note">Review quantities and totals before sending your order.</p>
 
       <div id="checkoutSummary" class="cart-items"></div>
 
