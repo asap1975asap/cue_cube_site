@@ -95,59 +95,54 @@ checkoutBtn?.addEventListener("click", () => {
   }
 });
 
-// ===== modal on products.html =====
+// ===== Add to order on products.html (inline qty under each product) =====
 const orderBtns = document.querySelectorAll(".order-btn");
-const qtyModal = document.getElementById("qtyModal");
-const qtyTitle = document.getElementById("qtyTitle");
-const qtyMin = document.getElementById("qtyMin");
-const qtyInput = document.getElementById("qtyInput");
-const qtyAdd = document.getElementById("qtyAdd");
-const qtyCancel = document.getElementById("qtyCancel");
-let currentProductId = null;
 
-function openModal(pid) {
-  const p = PRODUCTS[pid];
+function addToCart(productId, qty) {
+  const p = PRODUCTS[productId];
   if (!p) return;
-  currentProductId = pid;
-  qtyTitle.textContent = `Add: ${p.name}`;
-  qtyMin.textContent = `Minimum order: ${p.min} pcs`;
-  qtyInput.value = p.min;
-  qtyInput.min = p.min;
-  qtyModal.classList.add("open");
-}
 
-function closeModal() {
-  qtyModal.classList.remove("open");
-  currentProductId = null;
-}
-
-function addToCart(pid, qty) {
-  const p = PRODUCTS[pid];
-  if (!p) return;
-  const existing = CART.find((i) => i.id === pid);
-  if (existing) existing.qty += qty;
-  else CART.push({ id: p.id, name: p.name, sku: p.sku, price: p.price, qty });
+  const existing = CART.find((i) => i.id === productId);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    CART.push({
+      id: p.id,
+      name: p.name,
+      sku: p.sku,
+      price: p.price,
+      qty,
+    });
+  }
   saveCart();
   renderCart();
 }
 
 orderBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    openModal(btn.dataset.product);
+    const pid = btn.dataset.product;
+    const p = PRODUCTS[pid];
+    if (!p) return;
+
+    const input = document.querySelector(
+      `.qty-input[data-product="${pid}"]`
+    );
+
+    let qty = p.min;
+    if (input) {
+      const v = parseInt(input.value, 10);
+      if (!Number.isNaN(v)) {
+        qty = Math.max(v, p.min);
+      }
+      // выравниваем значение в поле (если ввели меньше минимума)
+      input.value = qty;
+    }
+
+    addToCart(pid, qty);
   });
 });
-qtyCancel?.addEventListener("click", closeModal);
-qtyAdd?.addEventListener("click", () => {
-  const q = parseInt(qtyInput.value, 10) || 0;
-  const min = parseInt(qtyInput.min, 10) || 1;
-  addToCart(currentProductId, Math.max(q, min));
-  closeModal();
-});
-qtyModal?.addEventListener("click", (e) => {
-  if (e.target === qtyModal) closeModal();
-});
 
-// ===== product.html page =====
+// ===== product.html page (детальная карточка) =====
 const detail = document.getElementById("productDetail");
 if (detail) {
   const params = new URLSearchParams(window.location.search);
@@ -197,7 +192,9 @@ if (detail) {
     const detailQty = document.getElementById("detailQty");
     addBtn.addEventListener("click", () => {
       const q = parseInt(detailQty.value, 10) || p.min;
-      addToCart(p.id, Math.max(q, p.min));
+      const qty = Math.max(q, p.min);
+      detailQty.value = qty;
+      addToCart(p.id, qty);
       alert("Added to order.");
     });
   }

@@ -50,6 +50,19 @@
             <p class="desc">Standard finish, scuff & shape, made in U.S.A.</p>
             <a class="view-btn" href="product.html?product=dime353">View</a>
             <p class="moq">Min: 10 pcs</p>
+
+            <div class="qty-row">
+              <label for="qty-dime353">Qty, pcs</label>
+              <input
+                id="qty-dime353"
+                class="qty-input"
+                type="number"
+                min="10"
+                value="10"
+                data-product="dime353"
+              />
+            </div>
+
             <button class="order-btn" data-product="dime353">Add to order</button>
           </div>
         </article>
@@ -63,6 +76,19 @@
             <p class="desc">Nickel radius for most popular cue tips.</p>
             <a class="view-btn" href="product.html?product=nickel418">View</a>
             <p class="moq">Min: 10 pcs</p>
+
+            <div class="qty-row">
+              <label for="qty-nickel418">Qty, pcs</label>
+              <input
+                id="qty-nickel418"
+                class="qty-input"
+                type="number"
+                min="10"
+                value="10"
+                data-product="nickel418"
+              />
+            </div>
+
             <button class="order-btn" data-product="nickel418">Add to order</button>
           </div>
         </article>
@@ -76,6 +102,19 @@
             <p class="desc">Keyring version, perfect for billiard shop counter.</p>
             <a class="view-btn" href="product.html?product=keychain">View</a>
             <p class="moq">Min: 20 pcs</p>
+
+            <div class="qty-row">
+              <label for="qty-keychain">Qty, pcs</label>
+              <input
+                id="qty-keychain"
+                class="qty-input"
+                type="number"
+                min="20"
+                value="20"
+                data-product="keychain"
+              />
+            </div>
+
             <button class="order-btn" data-product="keychain">Add to order</button>
           </div>
         </article>
@@ -94,19 +133,7 @@
     </aside>
   </main>
 
-  <!-- modal -->
-  <div class="qty-modal" id="qtyModal">
-    <div class="qty-modal-content">
-      <h3 id="qtyTitle">Add to order</h3>
-      <p id="qtyMin" class="qty-min"></p>
-      <label for="qtyInput">Quantity, pcs</label>
-      <input type="number" id="qtyInput" value="10" min="1" />
-      <div class="qty-actions">
-        <button id="qtyCancel" class="qty-cancel">Cancel</button>
-        <button id="qtyAdd" class="qty-add">Add</button>
-      </div>
-    </div>
-  </div>
+  <!-- Больше НЕТ модального окна внизу -->
 
   <script src="script.js"></script>
 </body>
