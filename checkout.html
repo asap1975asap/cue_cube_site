@@ -1,12 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>CueCube Checkout</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>CueCube – Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-<body class="page-checkout">
+<body data-page="checkout">
   <header class="topbar">
     <div class="topbar-left">
       <div class="logo-wordmark">CUECUBE</div>
@@ -14,78 +15,95 @@
     </div>
     <div class="topbar-right">
       <span class="topbar-meta">Signed in as: dealer</span>
-      <a href="products.html" class="link-ghost">Back to catalog</a>
+      <a href="products.html" class="link-button">Back to catalog</a>
+      <button class="link-button" id="logoutBtnCheckout">Log out</button>
     </div>
   </header>
 
-  <main class="checkout-layout">
-    <section class="checkout-card">
-      <h1 class="checkout-title">Checkout</h1>
-      <p class="checkout-subtitle">
-        Provide your store details and shipping address. We’ll confirm pricing and shipping
-        before finalizing the order.
+  <main class="checkout-wrapper">
+    <section class="checkout-panel">
+      <h1>Checkout</h1>
+
+      <p class="checkout-intro">
+        Provide your store details and shipping address. We’ll confirm pricing and shipping before finalizing the order.
       </p>
 
-      <div class="checkout-columns">
-        <!-- ФОРМА -->
-        <form class="checkout-form" id="checkoutForm">
-          <div class="checkout-section">
-            <h2>Store details</h2>
-            <label class="field-label">Store / Business name
-              <input type="text" class="field-input" required />
+      <div class="checkout-layout">
+        <div class="checkout-form">
+          <h2>Store details</h2>
+          <form id="checkoutForm">
+            <label>
+              Store / Business name
+              <input type="text" name="storeName" required>
             </label>
-            <label class="field-label">Contact name
-              <input type="text" class="field-input" required />
-            </label>
-            <label class="field-label">Email
-              <input type="email" class="field-input" required />
-            </label>
-            <label class="field-label">Phone
-              <input type="tel" class="field-input" required />
-            </label>
-          </div>
 
-          <div class="checkout-section">
+            <label>
+              Contact name
+              <input type="text" name="contactName" required>
+            </label>
+
+            <label>
+              Email
+              <input type="email" name="email" required>
+            </label>
+
+            <label>
+              Phone
+              <input type="tel" name="phone" required>
+            </label>
+
             <h2>Shipping address</h2>
-            <label class="field-label">Address line 1
-              <input type="text" class="field-input" required />
-            </label>
-            <label class="field-label">Address line 2 (optional)
-              <input type="text" class="field-input" />
-            </label>
-            <label class="field-label">City
-              <input type="text" class="field-input" required />
-            </label>
-            <label class="field-label">State / Province
-              <input type="text" class="field-input" required />
-            </label>
-            <label class="field-label">ZIP / Postal code
-              <input type="text" class="field-input" required />
-            </label>
-            <label class="field-label">Country
-              <input type="text" class="field-input" value="USA" required />
-            </label>
-          </div>
 
-          <div class="checkout-section">
+            <label>
+              Address line 1
+              <input type="text" name="addr1" required>
+            </label>
+
+            <label>
+              Address line 2 (optional)
+              <input type="text" name="addr2">
+            </label>
+
+            <label>
+              City
+              <input type="text" name="city" required>
+            </label>
+
+            <label>
+              State / Province
+              <input type="text" name="state" required>
+            </label>
+
+            <label>
+              ZIP / Postal code
+              <input type="text" name="zip" required>
+            </label>
+
+            <label>
+              Country
+              <input type="text" name="country" value="USA">
+            </label>
+
             <h2>Notes</h2>
-            <label class="field-label">Special instructions (optional)
-              <textarea class="field-input" rows="3"></textarea>
+            <label>
+              Special instructions (optional)
+              <textarea name="notes" rows="3"></textarea>
             </label>
-          </div>
 
-          <button type="submit" class="btn-primary checkout-submit">
-            Submit order request
-          </button>
-          <p class="checkout-note">
-            This is a demo checkout. No payment is processed yet.
-          </p>
-        </form>
+            <button type="submit" class="btn btn-primary btn-full">
+              Submit wholesale order request
+            </button>
+          </form>
+        </div>
 
-        <!-- ИТОГИ -->
         <aside class="checkout-summary">
           <h2>Order summary</h2>
+          <p class="checkout-note">
+            Review quantities and totals before sending your order.
+          </p>
+
           <div id="summaryItems" class="summary-items"></div>
+
           <div class="summary-total-row">
             <span>Total:</span>
             <span id="summaryTotal">$0.00</span>
@@ -94,7 +112,5 @@
       </div>
     </section>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
