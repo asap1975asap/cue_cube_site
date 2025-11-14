@@ -1,71 +1,63 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>CueCube • Dealer Catalog Access</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>CueCube Wholesale Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body data-page="index">
   <header class="topbar">
     <div class="topbar-left">
-      <div class="logo">
-        <span class="logo-main">CUECUBE</span>
-        <span class="logo-tag">WHOLESALE</span>
-      </div>
-      <div class="topbar-info">
-        Billiard accessories • Florida • Dealers only
-      </div>
+      <div class="logo-wordmark">CUECUBE</div>
+      <span class="badge">WHOLESALE</span>
     </div>
     <div class="topbar-right">
-      <span class="topbar-mini">Billiard accessories • Florida • Dealers only</span>
+      <span class="topbar-meta">Billiard accessories • Florida • Dealers only</span>
     </div>
   </header>
 
-  <main class="layout">
-    <!-- Hero / marketing side -->
-    <section class="hero">
-      <p class="hero-kicker">OFFICIAL CUECUBE BILLIARD ACCESSORIES SITE</p>
+  <main class="hero">
+    <section class="hero-copy">
+      <p class="eyebrow">OFFICIAL BILLIARD ACCESSORY SUPPLIER</p>
       <h1 class="hero-title">Dealer access for billiard stores</h1>
-
       <p class="hero-subtitle">
-        View wholesale pricing directly from the manufacturer with no middlemen.
-        Authorized retailers only.
+        View wholesale pricing, Florida distribution info and keychain models. Authorized dealers only.
       </p>
 
-      <div class="hero-badges">
-        <button class="pill">Min 10 pcs</button>
-        <button class="pill">50+ → 15% off</button>
-        <button class="pill">100+ → extra 15%</button>
+      <div class="pill-row">
+        <span class="pill">Min 10 pcs</span>
+        <span class="pill">50+ → 15% off</span>
+        <span class="pill">100+ → extra 15%</span>
       </div>
 
       <div class="hero-thumbs">
-        <img src="img/cue-cube-grey-353-1.jpg" alt="CueCube Dime" />
-        <img src="img/cue-cube-grey-418-1.jpg" alt="CueCube Nickel" />
-        <img src="img/cue-cube-keychain-418-1.jpg" alt="CueCube Keychain" />
+        <img src="img/cue-cube-grey-353-1.jpg" alt="CueCube Dime" class="hero-thumb">
+        <img src="img/cue-cube-grey-418-1.jpg" alt="CueCube Nickel" class="hero-thumb">
+        <img src="img/cue-cube-keychain-418-1.jpg" alt="CueCube Keychain" class="hero-thumb">
       </div>
 
-      <p class="hero-footnote">
-        Manufactured in USA • Founded in 1982 • Same-day shipping via USPS / UPS / FedEx
+      <p class="hero-footer">
+        Based in Florida • Ships via UPS / USPS • Billiard retailers &amp; pro shops
       </p>
     </section>
 
-    <!-- Login side -->
-    <aside class="login-panel">
-      <h2 class="login-title">Dealer Login</h2>
-      <p class="login-subtitle">
+    <section class="login-panel">
+      <h2>Dealer Login</h2>
+      <p class="login-desc">
         Enter your credentials to open the wholesale catalog.
       </p>
 
       <form id="loginForm" class="login-form">
         <label>
           Login / Email
-          <input type="email" id="loginEmail" required>
+          <input type="email" id="loginEmail" required value="demo@cuecube.com">
         </label>
 
         <label>
           Password
-          <input type="password" id="loginPassword" required>
+          <input type="password" id="loginPassword" required value="123Qwerty123">
         </label>
 
         <button type="submit" class="btn btn-primary">Sign in</button>
@@ -77,9 +69,7 @@
       <p class="login-help">
         Need access? Contact sales to be added as an official dealer.
       </p>
-    </aside>
+    </section>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
