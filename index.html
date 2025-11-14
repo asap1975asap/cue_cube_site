@@ -1,98 +1,210 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CueCube • Dealer Access</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CueCube Wholesale – Dealer Access</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0b2d26, #02070a);
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .tag {
+            background: #c9a44b;
+            padding: 4px 10px;
+            border-radius: 14px;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .top-right-link {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 80px 80px;
+        }
+
+        /* LEFT SIDE TEXT */
+        .left {
+            width: 50%;
+        }
+
+        .left h3 {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .left h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .left p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.08);
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 13px;
+        }
+
+        .info-line {
+            margin-top: 25px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* LOGIN BOX */
+        .login-box {
+            width: 350px;
+            background: rgba(0,0,0,0.45);
+            padding: 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-right: 80px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+        }
+
+        .login-box h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .login-box label {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .login-box input {
+            width: 100%;
+            margin: 8px 0 18px 0;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            background: #d7b259;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .note {
+            margin-top: 15px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+    </style>
 </head>
-<body class="login-page">
-<header class="topbar">
-    <div class="topbar-left">
-        <div class="logo-wordmark">
-            <span class="logo-text">CUECUBE</span>
-            <span class="badge badge-gold">WHOLESALE</span>
-        </div>
-        <div class="topbar-subtitle">
-            Billiard accessories • Florida • Dealers only
-        </div>
-    </div>
+
+<body>
+
+<header>
+    <div class="logo">CUECUBE <span class="tag">WHOLESALE</span></div>
+    <div class="top-right-link">Billiard accessories • Florida • Dealers only</div>
 </header>
 
-<main class="login-layout">
-    <!-- Левая часть — промо-блок -->
-    <section class="hero">
-        <p class="eyebrow">
-            OFFICIAL BILLIARD ACCESSORY SUPPLIER
-        </p>
-        <h1 class="hero-title">
-            Dealer access for billiard stores
-        </h1>
-        <p class="hero-text">
-            View wholesale pricing, Florida distribution info and keychain models.
-            Authorized dealers only.
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <h3>OFFICIAL CUECUBE BILLIARD ACCESSORIES SITE</h3>
+
+        <h1>Dealer access for billiard stores</h1>
+
+        <p>
+            View wholesale pricing directly from the manufacturer with no middlemen.  
+            Authorized retailers only.
         </p>
 
-        <div class="hero-badges">
-            <span class="pill">Min 10 pcs</span>
-            <span class="pill">50+ → 15% off</span>
-            <span class="pill">100+ → extra 15%</span>
+        <div class="badges">
+            <div class="badge">Min 10 pcs</div>
+            <div class="badge">50+ → 15% off</div>
+            <div class="badge">100+ → extra 15%</div>
         </div>
 
-        <div class="hero-thumbs">
-            <img src="img/cue-cube-grey-353-1.jpg" alt="CueCube Dime" />
-            <img src="img/cue-cube-grey-418-1.jpg" alt="CueCube Nickel" />
-            <img src="img/cue-cube-keychain-418-1.jpg" alt="CueCube Keychain" />
+        <div class="info-line">
+            Manufactured in USA • Founded in 1982 • Same-day shipping via USPS / UPS / FedEx
         </div>
+    </div>
 
-        <p class="hero-footer">
-            Based in Florida • Ships via UPS / USPS • Billiard retailers &amp; pro shops
-        </p>
-    </section>
+    <!-- RIGHT SIDE LOGIN BOX -->
+    <div class="login-box">
+        <h2>Dealer Login</h2>
 
-    <!-- Правая часть — форма логина -->
-    <section class="login-card">
-        <h2 class="login-title">Dealer Login</h2>
-        <p class="login-subtitle">
-            Enter your credentials to open the wholesale catalog.
-        </p>
+        <form action="products.html" method="POST" onsubmit="return checkLogin();">
+            <label>Login / Email</label>
+            <input type="email" id="email" placeholder="demo@cuecube.com" required>
 
-        <form id="loginForm" class="login-form">
-            <label class="field-label" for="email">Login / Email</label>
-            <input
-                id="email"
-                name="email"
-                type="email"
-                class="field-input"
-                placeholder="demo@cuecube.com"
-                required
-            />
+            <label>Password</label>
+            <input type="password" id="password" placeholder="********" required>
 
-            <label class="field-label" for="password">Password</label>
-            <input
-                id="password"
-                name="password"
-                type="password"
-                class="field-input"
-                placeholder="********"
-                required
-            />
+            <button type="submit">Sign in</button>
 
-            <button type="submit" class="btn-primary">
-                Sign in
-            </button>
-
-            <p id="loginError" class="login-error" hidden>
-                Incorrect login or password.
-            </p>
+            <div class="note">Need access? Contact sales to be added as an official dealer.</div>
         </form>
+    </div>
 
-        <p class="login-note">
-            Need access? Contact sales to be added as an official dealer.
-        </p>
-    </section>
-</main>
+</div>
 
-<script src="script.js"></script>
+<script>
+function checkLogin() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (email === "demo@cuecube.com" && password === "123Qwerty123") {
+        return true;
+    }
+
+    alert("Incorrect login or password.");
+    return false;
+}
+</script>
+
 </body>
 </html>
