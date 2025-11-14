@@ -1,183 +1,225 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CueCube Dealer Catalog</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>CueCube – Dealer Catalog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
-<body class="products-body">
-
-  <!-- TOP BAR -->
-  <header class="topbar billiard-topbar">
+<body data-page="products">
+  <header class="topbar">
     <div class="topbar-left">
-      <div class="logo">
-        CUECUBE <span>WHOLESALE</span>
-      </div>
-      <div class="topbar-info">
-        Billiard accessories • Florida • Dealers only
-      </div>
+      <div class="logo-wordmark">CUECUBE</div>
+      <span class="badge">WHOLESALE</span>
     </div>
-
     <div class="topbar-right">
-      <div class="user-pill">Signed in as: dealer</div>
-      <a href="index.html" class="logout">Log out</a>
+      <span class="topbar-meta">Billiard accessories • Florida • Dealers only</span>
+      <span class="topbar-meta">Signed in as: dealer</span>
+      <button class="link-button" id="logoutBtn">Log out</button>
     </div>
   </header>
 
-  <!-- MAIN LAYOUT -->
-  <div class="products-page products-page--with-cart">
-
-    <!-- SIDEBAR -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <h3>Catalog</h3>
-      <ul>
-        <li class="active">CueCube Tip Tools</li>
-        <li>Keychain Series</li>
-        <li>Dealer add-ons</li>
-      </ul>
+      <h2 class="sidebar-title">Catalog</h2>
+      <nav class="sidebar-nav">
+        <button class="sidebar-link sidebar-link-active">CueCube Tip Tools</button>
+        <button class="sidebar-link">Keychain Series</button>
+        <button class="sidebar-link">Dealer add-ons</button>
+      </nav>
 
-      <div class="side-box">
-        <h4>Wholesale terms</h4>
-        <ul>
+      <section class="sidebar-box">
+        <h3>Wholesale terms</h3>
+        <ul class="sidebar-list">
           <li>Min order: 10 pcs</li>
           <li>50+ pcs → 15% off</li>
           <li>100+ pcs → extra 15%</li>
           <li>Same-day fulfillment</li>
         </ul>
-      </div>
+      </section>
     </aside>
 
-    <!-- CATALOG CONTENT -->
-    <main class="products-content">
-      <h1>CueCube Dealer Catalog</h1>
-      <p class="muted">
-        Designed for billiard rooms, cue repair shops and billiard retailers.
-      </p>
+    <!-- MAIN CATALOG -->
+    <main class="catalog">
+      <header class="catalog-header">
+        <h1>CueCube Dealer Catalog</h1>
+        <p>Designed for billiard rooms, cue repair shops and billiard retailers.</p>
+      </header>
 
-      <div class="product-grid">
+      <section class="product-grid">
+        <!-- DIME 0.353 -->
+        <article class="product-card" data-product-id="dime353">
+          <img src="img/cue-cube-grey-353-1.jpg" alt="CueCube Dime .353" class="product-img">
+          <div class="product-body">
+            <h2 class="product-name">Tip Shaper – Dime (.353")</h2>
+            <p class="product-sku">SKU: CC-DIME-353</p>
+            <p class="product-desc">Standard finish, scuff &amp; shape, made in U.S.A.</p>
 
-        <!-- PRODUCT 1: DIME .353 -->
-        <article class="product-card" data-product="dime353">
-          <img src="img/cue-cube-grey-353-1.jpg" alt="CueCube Dime .353" />
-
-          <div class="prod-body">
-            <h2>Tip Shaper – Dime (.353")</h2>
-            <p class="sku">SKU: CC-DIME-353</p>
-            <p class="desc">Standard finish, scuff &amp; shape, made in U.S.A.</p>
-
-            <a class="view-btn" href="product.html?product=dime353">View</a>
-
-            <p class="moq">Min: 10 pcs</p>
-
-            <div class="qty-row">
-              <label for="qty_dime353">Qty, pcs</label>
-              <input
-                id="qty_dime353"
-                class="qty-input"
-                type="number"
-                min="10"
-                step="1"
-                value="10"
-              />
+            <div class="product-prices">
+              <div>
+                <span class="label">MSRP</span>
+                <span class="price">$15.00</span>
+              </div>
+              <div>
+                <span class="label">Dealer</span>
+                <span class="price">$15.00</span>
+                <span class="note">50+ → $12.75</span>
+              </div>
             </div>
 
-            <button class="order-btn" onclick="addToCart('dime353')">
+            <button class="btn btn-secondary view-btn" data-product-view="dime353">
+              View
+            </button>
+
+            <p class="product-min">Min: 10 pcs</p>
+
+            <div class="qty-row">
+              <label>
+                Qty, pcs
+                <input type="number" class="qty-input" min="10" step="1" value="10">
+              </label>
+            </div>
+
+            <button class="btn btn-primary add-btn"
+                    data-product-id="dime353"
+                    data-name='Tip Shaper – Dime (.353")'
+                    data-price="15"
+                    data-min="10">
               Add to order
             </button>
           </div>
         </article>
 
-        <!-- PRODUCT 2: NICKEL .418 -->
-        <article class="product-card" data-product="nickel418">
-          <img src="img/cue-cube-grey-418-1.jpg" alt="CueCube Nickel .418" />
+        <!-- NICKEL 0.418 -->
+        <article class="product-card" data-product-id="nickel418">
+          <img src="img/cue-cube-grey-418-1.jpg" alt="CueCube Nickel .418" class="product-img">
+          <div class="product-body">
+            <h2 class="product-name">Tip Shaper – Nickel (.418")</h2>
+            <p class="product-sku">SKU: CC-NICKEL-418</p>
+            <p class="product-desc">Nickel radius for most popular cue tips.</p>
 
-          <div class="prod-body">
-            <h2>Tip Shaper – Nickel (.418")</h2>
-            <p class="sku">SKU: CC-NICKEL-418</p>
-            <p class="desc">Nickel radius for most popular cue tips.</p>
-
-            <a class="view-btn" href="product.html?product=nickel418">View</a>
-
-            <p class="moq">Min: 10 pcs</p>
-
-            <div class="qty-row">
-              <label for="qty_nickel418">Qty, pcs</label>
-              <input
-                id="qty_nickel418"
-                class="qty-input"
-                type="number"
-                min="10"
-                step="1"
-                value="10"
-              />
+            <div class="product-prices">
+              <div>
+                <span class="label">MSRP</span>
+                <span class="price">$15.00</span>
+              </div>
+              <div>
+                <span class="label">Dealer</span>
+                <span class="price">$15.00</span>
+                <span class="note">50+ → $12.75</span>
+              </div>
             </div>
 
-            <button class="order-btn" onclick="addToCart('nickel418')">
+            <button class="btn btn-secondary view-btn" data-product-view="nickel418">
+              View
+            </button>
+
+            <p class="product-min">Min: 10 pcs</p>
+
+            <div class="qty-row">
+              <label>
+                Qty, pcs
+                <input type="number" class="qty-input" min="10" step="1" value="10">
+              </label>
+            </div>
+
+            <button class="btn btn-primary add-btn"
+                    data-product-id="nickel418"
+                    data-name='Tip Shaper – Nickel (.418")'
+                    data-price="15"
+                    data-min="10">
               Add to order
             </button>
           </div>
         </article>
 
-        <!-- PRODUCT 3: KEYCHAIN -->
-        <article class="product-card" data-product="keychain">
-          <img src="img/cue-cube-keychain-418-1.jpg" alt="CueCube Keychain Nickel" />
-
-          <div class="prod-body">
-            <h2>CueCube Keychain – Nickel</h2>
-            <p class="sku">SKU: CC-KEY-NICKEL</p>
-            <p class="desc">
+        <!-- KEYCHAIN -->
+        <article class="product-card" data-product-id="keychain">
+          <img src="img/cue-cube-keychain-418-1.jpg" alt="CueCube Keychain Nickel" class="product-img">
+          <div class="product-body">
+            <h2 class="product-name">CueCube Keychain – Nickel</h2>
+            <p class="product-sku">SKU: CC-KEY-NICKEL</p>
+            <p class="product-desc">
               Keyring version, perfect for billiard shop counter.
             </p>
 
-            <a class="view-btn" href="product.html?product=keychain">View</a>
-
-            <p class="moq">Min: 20 pcs</p>
-
-            <div class="qty-row">
-              <label for="qty_keychain">Qty, pcs</label>
-              <input
-                id="qty_keychain"
-                class="qty-input"
-                type="number"
-                min="20"
-                step="1"
-                value="20"
-              />
+            <div class="product-prices">
+              <div>
+                <span class="label">MSRP</span>
+                <span class="price">$15.00</span>
+              </div>
+              <div>
+                <span class="label">Dealer</span>
+                <span class="price">$15.00</span>
+                <span class="note">20+ → $12.75</span>
+              </div>
             </div>
 
-            <button class="order-btn" onclick="addToCart('keychain')">
+            <button class="btn btn-secondary view-btn" data-product-view="keychain">
+              View
+            </button>
+
+            <p class="product-min">Min: 20 pcs</p>
+
+            <div class="qty-row">
+              <label>
+                Qty, pcs
+                <input type="number" class="qty-input" min="20" step="1" value="20">
+              </label>
+            </div>
+
+            <button class="btn btn-primary add-btn"
+                    data-product-id="keychain"
+                    data-name="CueCube Keychain – Nickel"
+                    data-price="15"
+                    data-min="20">
               Add to order
             </button>
           </div>
         </article>
-
-      </div>
+      </section>
     </main>
 
-    <!-- CART PANEL -->
+    <!-- CART SIDEBAR -->
     <aside class="cart-panel">
       <h2>Wholesale order</h2>
-      <p class="cart-note">
+      <p class="cart-desc">
         Select quantity for each item. Shipping calculated later.
       </p>
 
       <div id="cartItems" class="cart-items"></div>
 
-      <div class="cart-total">
+      <div class="cart-total-row">
         <span>Total:</span>
         <span id="cartTotal">$0.00</span>
       </div>
 
-      <!-- УБРАЛ (demo) + добавил переход на checkout -->
-      <button class="cart-checkout" onclick="goToCheckout()">
+      <button id="checkoutBtn" class="btn btn-primary btn-full">
         Proceed to checkout
       </button>
     </aside>
-
   </div>
 
-  <script src="script.js"></script>
+  <!-- SIMPLE VIEW MODAL -->
+  <div class="modal" id="viewModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <div class="modal-body">
+        <div class="modal-images">
+          <img id="modalMainImg" src="" alt="" class="modal-main-img">
+          <div class="modal-thumbs" id="modalThumbs"></div>
+        </div>
+        <div class="modal-info">
+          <h2 id="modalTitle"></h2>
+          <p id="modalSku" class="product-sku"></p>
+          <p id="modalDesc" class="product-desc"></p>
+          <p class="modal-note">Quantity and pricing can be adjusted in the catalog view.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
